@@ -4,7 +4,8 @@ import aplicacion
 import tileset
 import time
 import system
-from pygame.locals import K_UP, K_DOWN, K_LEFT, K_RIGHT, K_SPACE, KEYDOWN, K_ESCAPE, KEYDOWN, KEYUP
+import window
+from pygame.locals import K_UP, K_DOWN, K_LEFT, K_RIGHT, K_SPACE, KEYDOWN, K_ESCAPE, KEYDOWN, KEYUP, K_F11
 from tileset import load_tile, load_image
 
 #constantes necesarias
@@ -34,7 +35,7 @@ class Personajes:
         self.rect = self.images[self.dir][self.crrnt_frame].get_rect()
         self.feet = pygame.Rect((self.rect.x + 8, self.rect.y + 16, 16, 16))
         self.items = {}
-        self.delay = 3
+        self.delay = 2 
         self.cnt = 0
         self.move(psx * 16, psy * 16)
 
@@ -47,8 +48,8 @@ class Personajes:
     def update(self, esc):
         pass
         
-    def show(self, scr):
-        scr.blit(self.images[self.dir][self.crrnt_frame], self.rect)
+    def show(self):
+        window.scr.blit(self.images[self.dir][self.crrnt_frame], self.rect)
         
     def load_sprites(self, spr, x, y):
         img = pygame.Surface((32, 32))
@@ -75,7 +76,7 @@ class Personajes:
         return { SUR:a, OESTE:b, ESTE:e, NORTE:d }   
 
     def get_item( self, item ):
-        if not has_item( item ):
+        if not self.has_item( item ):
             self.items[ item ] = 0
         self.items[ item ] += 1
          
@@ -86,8 +87,8 @@ class Personajes:
         self.dir = dir
         
     def del_item( self, item ):
-        if has_item( item ):
-            self.items[ item ] += 1
+        if self.has_item( item ):
+            self.items[ item ] -= 1
         if self.items[ item ] == 0:
             del self.items[ item ]
     
@@ -98,7 +99,7 @@ class Personajes:
             self.cnt = self.delay
         else:
             self.cnt -= 1
-        if self.crrnt_frame >= self.delay + 1:
+        if self.crrnt_frame >= 4:
             self.crrnt_frame = 0
     
     def w_coord(self, x, y, esc):
@@ -125,37 +126,33 @@ class Personaje(Personajes):
         pass
 
         
-    def show(self, scr, sx, sy):
+    def show(self, sx, sy):
         img = self.images[self.dir][self.crrnt_frame]
-        scr.blit(img, (self.rect.x - sx, self.rect.y - sy))
+        window.scr.blit(img, (self.rect.x - sx, self.rect.y - sy))
         
     def action(self):
-        while not pygame.key.get_pressed()[K_RETURN]:
+        while not pygame.key.get_pressed() == [K_RETURN]:
             print texto
         
 class Heroe(Personajes):
     def __init__(self, nom, spr, x, y, psx, psy, dir):
         Personajes.__init__(self, nom, spr, x, y, psx, psy, dir)
     
-    def update(self, esc, scr):
+    def update(self, esc):
         #obj = self.collide(esc.personajes, esc)
         obj = self.collide(esc.eventos[1], esc)
         t = pygame.key.get_pressed()
-        #if not obj == None:
-        #    if obj.type == "door":
-        #        sp = system.("Abrir")
-        #        sp.show(scr, 200-50, 300-25)
-                
+
         if t[K_DOWN]:
             if self.can_walk(self.feet.centerx + esc.scrollx,
             self.feet.bottom + esc.scrolly, esc):
                 self.change_dir(SUR)
                 self.animar()
                 if (not esc.scroll_limite_inf() and 
-                self.feet.centery > aplicacion.TAMY / 2):
-                    esc.mover_scroll(0, 3)
+                self.feet.centery > window.TAMY / 2):
+                    esc.mover_scroll(0, 5)
                 else:
-                    self.move(0, 3)
+                    self.move(0, 5)
                 
         elif t[K_UP]:
             if self.can_walk(self.feet.centerx + esc.scrollx,
@@ -163,10 +160,10 @@ class Heroe(Personajes):
                 self.change_dir(NORTE)
                 self.animar()
                 if (not esc.scroll_limite_sup() and
-                self.feet.centery < aplicacion.TAMY / 2):
-                    esc.mover_scroll(0, -3)
+                self.feet.centery < window.TAMY / 2):
+                    esc.mover_scroll(0, -5)
                 else:
-                    self.move(0, -3)
+                    self.move(0, -5)
                
         elif t[K_LEFT]:
             if self.can_walk(self.feet.left + esc.scrollx,
@@ -174,10 +171,10 @@ class Heroe(Personajes):
                 self.animar()
                 self.change_dir(OESTE)
                 if (not esc.scroll_limite_izq() and
-                self.feet.centerx < aplicacion.TAMX / 2):
-                    esc.mover_scroll(-3, 0)
+                self.feet.centerx < window.TAMX / 2):
+                    esc.mover_scroll(-5, 0)
                 else:
-                    self.move(-3, 0)
+                    self.move(-5, 0)
                 
         elif t[K_RIGHT]:
             if self.can_walk(self.feet.right + esc.scrollx,
@@ -185,21 +182,25 @@ class Heroe(Personajes):
                 self.change_dir(ESTE)
                 self.animar()
                 if (not esc.scroll_limite_der() and
-                self.feet.centerx > aplicacion.TAMX / 2):
-                    esc.mover_scroll(3, 0)
+                self.feet.centerx > window.TAMX / 2):
+                    esc.mover_scroll(5, 0)
                 else:
-                    self.move(3, 0)
+                    self.move(5, 0)
         elif t[K_SPACE]:
-            print "presionada"
             if obj is not None:
-                obj.action(scr)
-                
+                time.sleep(0.5)
+                obj.action(esc.eventos[1])
+        elif t[K_F11]:
+            time.sleep(0.5)
+            pygame.display.toggle_fullscreen()        
     
     def collide(self, objects, esc):
         obj = None
         if len(objects) > 0:
             for ob in iter(objects):
-                if self.rect.colliderect(pygame.Rect(ob.rect.x - 
-                    esc.scrollx, ob.rect.y - esc.scrolly, 32, 32)):                                     
+                if(self.rect.colliderect(pygame.Rect(ob.rect.x - 
+                    esc.scrollx, ob.rect.y - esc.scrolly, 32, 32))
+                  and ob.visible):                                     
+
                     obj = ob
         return obj

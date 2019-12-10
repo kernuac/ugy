@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <escena>
-    <tileset src="data/Inner-Castle-13.png">
+    <tileset src="Inner-Castle-13.png">
         <tile tipo="." x="160" y="16"  h="16" w="16"/><!--suelo normal-->
         <tile tipo="·" x="160" y="64"  h="16" w="16"/><!--suelo sombra-->
         <tile tipo="*" x="64"  y="224" h="16" w="16"/><!--baldosa centro-->
@@ -27,23 +27,23 @@
             <bits>---4222222222222222222222224---</bits>
             <bits>---4111111111111111111111114---</bits>
             <bits>---4000000000000000000000004---</bits>
-            <bits>---4..........`*´..........4---</bits>
-            <bits>---4..........`*´..........4---</bits>
-            <bits>---4..........`*´..........4---</bits>
-            <bits>4444..........`*´..........4444</bits>
-            <bits>3333..........`*´..........3333</bits>
-            <bits>2222..........`*´..........2222</bits>
-            <bits>1111..........`*´..........1111</bits>
-            <bits>0000..........`*´..........0000</bits>
-            <bits>..............`*´..............</bits>
-            <bits>..............`*`..............</bits>
-            <bits>...`***********************´...</bits>
-            <bits>4444...........*...........4444</bits>
-            <bits>3334...........*...........4333</bits>
-            <bits>2224...........*...........4222</bits>
-            <bits>1114...........*...........4111</bits>
-            <bits>0004...........*...........4000</bits>
-            <bits>---4...........*...........4---</bits>
+            <bits>---4-----------------------4---</bits>
+            <bits>---4-----------------------4---</bits>
+            <bits>---4-----------------------4---</bits>
+            <bits>4444-----------------------4444</bits>
+            <bits>3333-----------------------3333</bits>
+            <bits>2222-----------------------2222</bits>
+            <bits>1111-----------------------1111</bits>
+            <bits>0000-----------------------0000</bits>
+            <bits>...............................</bits>
+            <bits>...............................</bits>
+            <bits>...............................</bits>
+            <bits>4444-----------------------4444</bits>
+            <bits>3334-----------------------4333</bits>
+            <bits>2224-----------------------4222</bits>
+            <bits>1114-----------------------4111</bits>
+            <bits>0004-----------------------4000</bits>
+            <bits>---4444444444444444444444444---</bits>
             <bits>---3333333333333333333333333---</bits>
             <bits>---2222222222222222222222222---</bits>
             <bits>---1111111111111111111111111---</bits>
@@ -52,7 +52,7 @@
         <capa1>
             <bits>-----Y----Y---------Y----Y-----</bits>
             <bits>-------------------------------</bits>
-            <bits>---------G-G-------G-G---------</bits>
+            <bits>-------------------------------</bits>
             <bits>-------------------------------</bits>
             <bits>-------------------------------</bits>
             <bits>-------------------------------</bits>
@@ -108,23 +108,23 @@
             <bits>1111111111111111111111111111111</bits>
             <bits>1111111111111111111111111111111</bits>
             <bits>1111111111111111111111111111111</bits>
-            <bits>1111000000000000000000000001111</bits>
-            <bits>1111000000000000000000000001111</bits>
-            <bits>1111000000000000000000000001111</bits>
-            <bits>1111000000000000000000000001111</bits>
-            <bits>1111000000000000000000000001111</bits>
-            <bits>1111000000000000000000000001111</bits>
-            <bits>1111000000000000000000000001111</bits>
-            <bits>1111000000000000000000000001111</bits>
+            <bits>1111111111111111111111111111111</bits>
+            <bits>1111111111111111111111111111111</bits>
+            <bits>1111111111111111111111111111111</bits>
+            <bits>1111111111111111111111111111111</bits>
+            <bits>1111111111111111111111111111111</bits>
+            <bits>1111111111111111111111111111111</bits>
+            <bits>1111111111111111111111111111111</bits>
+            <bits>1111111111111111111111111111111</bits>
             <bits>0000000000000000000000000000000</bits>
             <bits>0000000000000000000000000000000</bits>
             <bits>0000000000000000000000000000000</bits>
-            <bits>1111000000000000000000000001111</bits>
-            <bits>1111000000000000000000000001111</bits>
-            <bits>1111000000000000000000000001111</bits>
-            <bits>1111000000000000000000000001111</bits>
-            <bits>1111000000000000000000000001111</bits>
-            <bits>1111000000000000000000000001111</bits>
+            <bits>1111111111111111111111111111111</bits>
+            <bits>1111111111111111111111111111111</bits>
+            <bits>1111111111111111111111111111111</bits>
+            <bits>1111111111111111111111111111111</bits>
+            <bits>1111111111111111111111111111111</bits>
+            <bits>1111111111111111111111111111111</bits>
             <bits>1111111111111111111111111111111</bits>
             <bits>1111111111111111111111111111111</bits>
             <bits>1111111111111111111111111111111</bits>
@@ -133,9 +133,160 @@
     </mapa>
     <eventos>
         <evento type="teleport" x="0" y="12" dx="1" dy="3"
-        map="castlep2a" psx="29" psy="12" name="al_2a" sx="96" sy="72"/>
+        map="castlep2a" psx="29" psy="12" name="al_2a" sx="96" sy="72"
+        required="None"/>
         
         <evento type="teleport" x="30" y="12" dx="1" dy="3"
-        map="castlep2c" psx="2" psy="12" name="al_2c" sx="0" sy="72"/>
+        map="castlep2c" psx="2" psy="12" name="al_2c" sx="0" sy="72"
+        required="sf1"/>
+        
+        <evento type="block" x="26" y="12" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck4"
+        required="sf1"/>
+        
+        <evento type="block" x="26" y="13" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck5"
+        required="sf1"/>
+        
+        <evento type="block" x="26" y="14" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck6"
+        required="sf1"/>
+        
+        <evento type="block" x="25" y="12" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck7"
+        required="sf1"/>
+        
+        <evento type="block" x="25" y="13" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck8"
+        required="sf1"/>
+        
+        <evento type="block" x="25" y="14" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck9"
+        required="sf1"/>
+        
+        <evento type="block" x="24" y="12" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck10"
+        required="sf1"/>
+        
+        <evento type="block" x="24" y="13" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck11"
+        required="sf1"/>
+        
+        <evento type="block" x="24" y="14" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck12"
+        required="sf1"/>
+        
+        <evento type="block" x="22" y="12" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck12"
+        required="sf2"/>
+        
+        <evento type="block" x="22" y="13" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck13"
+        required="sf2"/>
+        
+        <evento type="block" x="22" y="14" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck14"
+        required="sf2"/>
+        
+        <evento type="block" x="21" y="12" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck14"
+        required="sf2"/>
+        
+        <evento type="switchfloormath" x="21" y="12" dx="1" dy="1" h="20" w="24"
+        src="object2.png" drx="74" dry="40" izx="74" izy="8" name="sf1"
+        state="0" required="None"/>
+        
+        <evento type="block" x="21" y="14" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck15"
+        required="sf2"/>
+        
+        <evento type="block" x="20" y="12" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck16"
+        required="sf2"/>
+        
+        <evento type="block" x="20" y="13" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck17"
+        required="sf2"/>
+        
+        <evento type="block" x="20" y="14" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck18"
+        required="sf2"/>
+        
+        <evento type="block" x="18" y="12" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck19"
+        required="sf3"/>
+        
+        <evento type="block" x="18" y="13" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck20"
+        required="sf3"/>
+        
+        <evento type="block" x="18" y="14" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck21"
+        required="sf3"/>
+        
+        <evento type="block" x="17" y="12" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck22"
+        required="sf3"/>
+        
+        <evento type="switchfloormath" x="17" y="12" dx="1" dy="1" h="20" w="24"
+        src="object2.png" drx="74" dry="40" izx="74" izy="8" name="sf2"
+        state="0" required="None"/>
+        
+        <evento type="block" x="17" y="14" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck23"
+        required="sf3"/>
+        
+        <evento type="block" x="16" y="12" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck24"
+        required="sf3"/>
+        
+        <evento type="block" x="16" y="13" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck25"
+        required="sf3"/>
+        
+        <evento type="block" x="16" y="14" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck26"
+        required="sf3"/>
+        
+        <evento type="block" x="14" y="12" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck27"
+        required="sf4"/>
+        
+        <evento type="block" x="14" y="13" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck28"
+        required="sf4"/>
+        
+        <evento type="block" x="14" y="14" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck29"
+        required="sf4"/>
+        
+        <evento type="block" x="13" y="12" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck30"
+        required="sf4"/>
+        
+        <evento type="switchfloormath" x="13" y="12" dx="1" dy="1" h="20" w="24"
+        src="object2.png" drx="74" dry="40" izx="74" izy="8" name="sf3"
+        state="0" required="None"/>
+        
+        <evento type="block" x="13" y="14" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck30"
+        required="sf4"/>
+        
+        <evento type="block" x="12" y="12" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck31"
+        required="sf4"/>
+        
+        <evento type="block" x="12" y="13" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck32"
+        required="sf4"/>
+        
+        <evento type="block" x="12" y="14" dx="1" dy="1" h="16" w="16"
+        src="Inner-Castle-13.png" ix="144" iy="128" name="blck33"
+        required="sf4"/>
+        
+        <evento type="switchfloor" x="9" y="12" dx="1" dy="1" h="20" w="24"
+        src="object2.png" drx="74" dry="40" izx="74" izy="8" name="sf4"
+        state="0" required="None"/>
+        
     </eventos>
 </escena>

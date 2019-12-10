@@ -1,8 +1,8 @@
 import tileset
 import funciones
 import pygame
+import window
 from xml.dom.minidom import parse
-
 
 class Mapa:
     bkgr = None
@@ -26,8 +26,8 @@ class Mapa:
         self.tileset = tileset.TileSet(xdoc)
         #self.image = None 
         
-    def show(self, scr, sx, sy):
-        scr.blit(self.image, (-sx, -sy))
+    def show(self, sx, sy):
+        window.scr.blit(self.image, (-sx, -sy))
     
     def is_solid(self, x, y):
         return self.solid[y][x]

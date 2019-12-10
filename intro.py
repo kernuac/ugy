@@ -1,6 +1,7 @@
 import pygame
 import funciones
 import time
+import window
 from pygame.locals import FULLSCREEN
 #Constantes
 RUNNING = 0
@@ -17,7 +18,7 @@ class Intro:
     def get_state(self):
         return self.state
 
-    def show(self, scr):
+    def show(self):
         """mostramos la introduccion en pantalla"""
         b = pygame.Surface((480, 320))
         b.fill((0, 0, 0))
@@ -26,15 +27,15 @@ class Intro:
         for img in self.imagenes:
             for i in range(0, 255, 5):
                 b.set_alpha(255 - i)
-                scr.blit(img,(0,0))
-                scr.blit(b, (0, 0))
+                window.scr.blit(img,(0,0))
+                window.scr.blit(b, (0, 0))
                 pygame.display.update()
                 clock.tick(20)
             time.sleep(3)
             for i in range(0, 255, 5):
                 b.set_alpha(i)
-                scr.blit(img, (0, 0))
-                scr.blit(b, (0, 0))
+                window.scr.blit(img, (0, 0))
+                window.scr.blit(b, (0, 0))
                 pygame.display.update()
                 clock.tick(20)
 

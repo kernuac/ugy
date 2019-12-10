@@ -15,11 +15,11 @@ class Juego:
     def get_state(self):
         return self.state
 
-    def update(self, scr):
+    def update(self):
         for e in pygame.event.get([QUIT, KEYDOWN]):
             if e.type == QUIT:
                 sys.exit(-1)
-            elif e.type == KEYDOWN:
-                if e.key == K_ESCAPE:
+            t = pygame.key.get_pressed()
+            if t[K_ESCAPE]:
                     self.state = MENU
-        self.mundo.update(scr)    
+        self.mundo.update()    

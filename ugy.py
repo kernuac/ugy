@@ -7,6 +7,9 @@ def main(argv):
     """Funcion principal"""
     pygame.init()
     pygame.mixer.init()
+    pygame.mouse.set_visible(False)
+    
+    
     ap = aplicacion.Aplicacion(0)
     ap.loop()
     pygame.quit()

@@ -3,7 +3,8 @@ import sys
 import time
 import juego
 import funciones
-from pygame.locals import K_UP, K_DOWN, K_RETURN, QUIT, KEYDOWN
+import window
+from pygame.locals import K_UP, K_DOWN, K_RETURN, QUIT, KEYDOWN, K_F11
 
 ## constantes
 # Estados
@@ -32,7 +33,7 @@ class Menu:
     def get_state(self):
         return self.state
     
-    def update(self, scr):
+    def update(self):
         """Actualizamos el cursor seleccionador de opciones en el Menu"""
         
         for e in pygame.event.get([QUIT, KEYDOWN]):
@@ -50,21 +51,23 @@ class Menu:
                         pygame.event.clear()
                     elif self.accion == 1:
                         self.state = EXIT
-        self.show(scr)
+                elif e.key == K_F11:
+                    pygame.display.toggle_fullscreen()
+        self.show()
 
-    def show(self, scr):
+    def show(self):
         """Imprimimos el menu en pantalla, con una pequenia transicion. 
         Esto se logra imprimiendo, sobre la imagen del menu, una 
         superficie negra. Esta ultima se ira atenuando hasta ser 
         totalmente invisible (set_alpha)"""
         
-        scr.fill((0, 0, 0))
-        negro = pygame.Surface(scr.get_size())
+        window.scr.fill((0, 0, 0))
+        negro = pygame.Surface(window.scr.get_size())
         negro.fill((0, 0, 0))
         negro.set_alpha(self.alpha)
         text = []
         if self.background != None:
-            scr.blit(self.background, (0, 0))
+            window.scr.blit(self.background, (0, 0))
             
         for i in range(len(self.acciones)):
             if self.accion == i:
@@ -74,8 +77,8 @@ class Menu:
                 text.append(self.font.render(self.acciones[i],
                                          True, (255, 255, 255)))
                 
-            scr.blit(text[i], (scr.get_size()[0] / 2,
-                     i * 20 + scr.get_size()[1] / 2))
+            window.scr.blit(text[i], (window.scr.get_size()[0] / 2,
+                     i * 20 + window.scr.get_size()[1] / 2))
         
         if self.transicion == 1 and self.alpha > 0:
             self.alpha -= 10
@@ -83,5 +86,5 @@ class Menu:
         if self.alpha == 0:
             self.transicion = 0
             
-        scr.blit(negro, (0, 0))
+        window.scr.blit(negro, (0, 0))
         

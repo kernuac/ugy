@@ -3,6 +3,7 @@ import intro
 import menu
 import sys
 import juego
+import os
 from pygame.locals import FULLSCREEN
 
 # Constantes
@@ -12,7 +13,9 @@ GAME = 2
 EXIT = 3
 TAMX = 400
 TAMY = 300
-
+JOIN = os.path.join
+PATH = os.path.abspath(os.path.dirname(__file__))
+DATA = JOIN(PATH, "data")
 class Aplicacion:
     
     scr = None
@@ -25,10 +28,10 @@ class Aplicacion:
         """Inicializamos las variables necesarias para la aplicacion.
         Creamos la pantalla, definimos los estados y creamos los objetos
         pertinentes."""
-        self.scr = pygame.display.set_mode((TAMX, TAMY))
+        #self.scr = pygame.display.set_mode((TAMX, TAMY))
         self.state = INTRO
-        self.intro = intro.Intro("data/desarrollado.png",
-                                     "data/derechos.png") 
+        self.intro = intro.Intro(JOIN(DATA,"desarrollado.png"),
+                                 JOIN(DATA,"derechos.png")) 
         self.menu = menu.Menu()
         self.juego = juego.Juego()
     
@@ -56,14 +59,14 @@ class Aplicacion:
         
         if self.get_state() is INTRO:
             if self.intro.get_state() is intro.RUNNING:
-                self.intro.show(self.scr)
+                self.intro.show()
                 
             elif self.intro.get_state() is intro.FINISHED:
                 self.state = MENU
                 
         elif self.get_state() is MENU:
             if self.menu.get_state() is menu.WAIT:
-                self.menu.update(self.scr)
+                self.menu.update()
                 
             elif self.menu.get_state() is menu.EXIT:
                 pygame.quit()
@@ -76,7 +79,7 @@ class Aplicacion:
                 
         elif self.get_state() is GAME:
             if self.juego.get_state() is juego.RUN:
-                self.juego.update(self.scr)
+                self.juego.update()
 
             elif self.juego.get_state() is juego.MENU:
                 self.state = MENU

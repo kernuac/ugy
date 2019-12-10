@@ -1,12 +1,15 @@
 import funciones
 from xml.dom.minidom import parse
+import os
 import pygame
-
+JOIN = os.path.join
+PATH = os.path.abspath(os.path.dirname(__file__))
+DATA = JOIN(PATH, "data")
 def load_tileset(xdoc):
     i = {}
         
     ts = xdoc.getElementsByTagName("tileset")[0]
-    img = load_image(ts.attributes.get("src").value).convert()
+    img = load_image(JOIN(DATA, ts.attributes.get("src").value)).convert()
     tl = ts.getElementsByTagName("tile")
         
     for t in tl:
