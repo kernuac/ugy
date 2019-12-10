@@ -2,3 +2,4 @@
 **/*.pyo
 **/*~
 geany_run_script.sh
+lnx64env
