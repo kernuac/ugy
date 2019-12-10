@@ -1,0 +1,2 @@
+class Objeto:
+    pass
